@@ -1,8 +1,5 @@
-﻿using MtnMomo.DotNet.Client.Common.Models;
-using System;
+﻿using MtnMomo.DotNet.Client.Common.Models.Response;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MtnMomo.DotNet.Client.Common.Http

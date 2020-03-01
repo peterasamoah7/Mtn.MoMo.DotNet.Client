@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MtnMomo.DotNet.Client.Common;
+using Newtonsoft.Json;
 
 namespace MtnMomo.DotNet.Client.Collection.Models.Shared
 {

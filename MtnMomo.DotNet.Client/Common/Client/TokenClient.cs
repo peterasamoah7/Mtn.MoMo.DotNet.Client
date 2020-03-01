@@ -1,8 +1,8 @@
-﻿using MtnMomo.DotNet.Client.Common.Http;
+﻿using MtnMomo.DotNet.Client.Common.Client.Interfaces;
+using MtnMomo.DotNet.Client.Common.Http;
 using MtnMomo.DotNet.Client.Common.Models;
-using System;
+using MtnMomo.DotNet.Client.Common.Models.Response;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MtnMomo.DotNet.Client.Common.Client

@@ -1,4 +1,4 @@
-﻿namespace MtnMomo.DotNet.Client.Collection.Models
+﻿namespace MtnMomo.DotNet.Client.Common
 {
     public enum PartyIdType
     {

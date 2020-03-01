@@ -1,6 +1,4 @@
-﻿using MtnMomo.DotNet.Client.Common.Models;
-using Newtonsoft.Json;
-using System;
+﻿using MtnMomo.DotNet.Client.Common.Models.Response;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;

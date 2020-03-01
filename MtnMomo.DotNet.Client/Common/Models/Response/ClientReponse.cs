@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 
-namespace MtnMomo.DotNet.Client.Common.Models
+namespace MtnMomo.DotNet.Client.Common.Models.Response
 {
     public class ClientResponse<T>
     {

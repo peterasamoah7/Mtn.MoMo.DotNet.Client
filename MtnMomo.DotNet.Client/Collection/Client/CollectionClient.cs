@@ -4,8 +4,11 @@ using MtnMomo.DotNet.Client.Collection.Models.Reponse;
 using MtnMomo.DotNet.Client.Collection.Models.Request;
 using MtnMomo.DotNet.Client.Common;
 using MtnMomo.DotNet.Client.Common.Client;
+using MtnMomo.DotNet.Client.Common.Client.Interfaces;
 using MtnMomo.DotNet.Client.Common.Http;
 using MtnMomo.DotNet.Client.Common.Models;
+using MtnMomo.DotNet.Client.Common.Models.Request;
+using MtnMomo.DotNet.Client.Common.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -17,16 +20,22 @@ namespace MtnMomo.DotNet.Client.Collection.Client
     {
         private readonly IBaseClient baseClient;
         private readonly ITokenClient tokenClient;
+        private readonly IAccountBalanceClient accountBalanceClient;
+        private readonly IAccountHolderClient accountHolderClient;
         private readonly CollectionConfig collectionConfig;
 
         public CollectionClient(
             IBaseClient baseClient,
             CollectionConfig collectionConfig,
-            ITokenClient tokenClient)
+            ITokenClient tokenClient,
+            IAccountBalanceClient accountBalanceClient,
+            IAccountHolderClient accountHolderClient)
         {
             this.baseClient = baseClient;
             this.collectionConfig = collectionConfig;
             this.tokenClient = tokenClient;
+            this.accountBalanceClient = accountBalanceClient;
+            this.accountHolderClient = accountHolderClient;
         }
 
         /// <summary>
@@ -103,16 +112,14 @@ namespace MtnMomo.DotNet.Client.Collection.Client
         {
             var token = await GetToken();
 
-            var headers = new List<KeyValuePair<string, string>>
+            var accountBalanceRquest = new AccountBalanceRequest
             {
-                new KeyValuePair<string, string>(Constants.SubKeyHeader, collectionConfig.SubscriptionKey),
-                new KeyValuePair<string, string>(Constants.AuthHeader, $"Bearer {token.AccessToken}"),
+                SubscriptionKey = collectionConfig.SubscriptionKey,
+                RequestUri = CollectionRequestUri.AccountBalance,
+                Token = token.AccessToken
             };
 
-            var response = await baseClient.GetAsync<AccountBalanceResponse>(CollectionRequestUri.AccountBalance, Constants.MtnClient, headers);
-            response.Status = response.StatusCode == HttpStatusCode.OK ? Status.Successful.ToString() : Status.Failed.ToString();
-
-            return response;
+            return await accountBalanceClient.AccountBalance(accountBalanceRquest);          
         }
 
         /// <summary>
@@ -125,16 +132,16 @@ namespace MtnMomo.DotNet.Client.Collection.Client
         {
             var token = await GetToken();
 
-            var headers = new List<KeyValuePair<string, string>>
+            var accountHolderRequest = new AccountHolderRequest
             {
-                new KeyValuePair<string, string>(Constants.SubKeyHeader, collectionConfig.SubscriptionKey),
-                new KeyValuePair<string, string>(Constants.AuthHeader, $"Bearer {token.AccessToken}"),
+                SubscriptionKey = collectionConfig.SubscriptionKey,
+                AccountHolderId = accountHolderId,
+                AccountHolderIdType = accountHolderIdType,
+                RequestUri = CollectionRequestUri.AccountHolder,
+                Token = token.AccessToken
             };
 
-            var response = await baseClient.GetAsync($"{CollectionRequestUri.AccountHolder}/{accountHolderIdType}/{accountHolderId}/active", Constants.MtnClient, headers);
-            response.Status = response.StatusCode == HttpStatusCode.OK ? Status.Successful.ToString() : Status.Failed.ToString();
-
-            return response;
+            return await accountHolderClient.AccountHolder(accountHolderRequest);        
         }
 
     }

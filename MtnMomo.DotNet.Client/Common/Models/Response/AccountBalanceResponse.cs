@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace MtnMomo.DotNet.Client.Collection.Models.Reponse
+namespace MtnMomo.DotNet.Client.Common.Models.Response
 {
     public class AccountBalanceResponse
     {

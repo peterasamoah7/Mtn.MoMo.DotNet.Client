@@ -1,9 +1,6 @@
 ﻿using MtnMomo.DotNet.Client.Collection.Models.Reponse;
 using MtnMomo.DotNet.Client.Collection.Models.Request;
-using MtnMomo.DotNet.Client.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using MtnMomo.DotNet.Client.Common.Models.Response;
 using System.Threading.Tasks;
 
 namespace MtnMomo.DotNet.Client.Collection.Client

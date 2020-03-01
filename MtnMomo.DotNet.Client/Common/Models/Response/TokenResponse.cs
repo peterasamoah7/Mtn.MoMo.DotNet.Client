@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MtnMomo.DotNet.Client.Common.Models
+namespace MtnMomo.DotNet.Client.Common.Models.Response
 {
     /// <summary>
     /// Ref : https://momodeveloper.mtn.com/docs/services/collection/operations/token-POST?

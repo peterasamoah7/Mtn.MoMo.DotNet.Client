@@ -9,4 +9,11 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Disbursements\Models\Config\" />
+    <Folder Include="Disbursements\Models\Shared\" />
+    <Folder Include="Disbursements\Models\Request\" />
+    <Folder Include="Disbursements\Models\Response\" />
+  </ItemGroup>
+
 </Project>
