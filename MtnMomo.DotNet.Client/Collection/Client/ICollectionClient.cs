@@ -7,7 +7,7 @@ namespace MtnMomo.DotNet.Client.Collection.Client
 {
     public interface ICollectionClient
     {
-        Task<ClientResponse<string>> PostRequestToPay(PostReqesutToPayRequest request);
+        Task<ClientResponse<string>> PostRequestToPay(PostReqesutToPayRequest request, string callbackUrl = null);
         Task<ClientResponse<GetReqesutToPayReponse>> GetRequestToPay(string referenceId);
         Task<ClientResponse<AccountBalanceResponse>> AccountBalance();
         Task<ClientResponse> AccountHolder(string accountHolderIdType, string accountHolderId);

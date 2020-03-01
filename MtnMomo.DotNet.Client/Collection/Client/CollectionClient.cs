@@ -3,7 +3,6 @@ using MtnMomo.DotNet.Client.Collection.Models.Config;
 using MtnMomo.DotNet.Client.Collection.Models.Reponse;
 using MtnMomo.DotNet.Client.Collection.Models.Request;
 using MtnMomo.DotNet.Client.Common;
-using MtnMomo.DotNet.Client.Common.Client;
 using MtnMomo.DotNet.Client.Common.Client.Interfaces;
 using MtnMomo.DotNet.Client.Common.Http;
 using MtnMomo.DotNet.Client.Common.Models;
@@ -62,7 +61,7 @@ namespace MtnMomo.DotNet.Client.Collection.Client
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<ClientResponse<string>> PostRequestToPay(PostReqesutToPayRequest request)
+        public async Task<ClientResponse<string>> PostRequestToPay(PostReqesutToPayRequest request, string callbackUrl = null)
         {
             var token = await GetToken();
 
@@ -74,6 +73,11 @@ namespace MtnMomo.DotNet.Client.Collection.Client
                 new KeyValuePair<string, string>(Constants.AuthHeader, $"Bearer {token.AccessToken}"),
                 new KeyValuePair<string, string>(Constants.SubKeyHeader, collectionConfig.SubscriptionKey)
             };
+
+            if (!string.IsNullOrEmpty(callbackUrl))
+            {
+                headers.Add(new KeyValuePair<string, string>(Constants.CallbackUrlHeader, callbackUrl));
+            }
 
             var response = await baseClient.PostAsync<string>(CollectionRequestUri.RequestToPay, Constants.MtnClient, request, headers);
 

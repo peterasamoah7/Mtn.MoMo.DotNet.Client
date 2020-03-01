@@ -1,13 +1,13 @@
-﻿using MtnMomo.DotNet.Client.Collection.Models.Shared;
-using MtnMomo.DotNet.Client.Common.Models.Response;
+﻿using MtnMomo.DotNet.Client.Common.Models.Response;
+using MtnMomo.DotNet.Client.Disbursements.Models.Shared;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace MtnMomo.DotNet.Client.Collection.Models.Reponse
+namespace MtnMomo.DotNet.Client.Disbursements.Models.Response
 {
-    /// <summary>
-    /// Ref : https://momodeveloper.mtn.com/docs/services/collection/operations/requesttopay-referenceId-GET?
-    /// </summary>
-    public class GetReqesutToPayReponse
+    public class TransferResponse
     {
         [JsonProperty("amount")]
         public string Amount { get; set; }
@@ -21,8 +21,8 @@ namespace MtnMomo.DotNet.Client.Collection.Models.Reponse
         [JsonProperty("externalId")]
         public int ExternalId { get; set; }
 
-        [JsonProperty("payer")]
-        public Payer Payer { get; set; }
+        [JsonProperty("payee")]
+        public Payee Payee { get; set; }
 
         [JsonProperty("status")]
         public string Status { get; set; }

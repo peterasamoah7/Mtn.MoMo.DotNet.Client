@@ -8,6 +8,7 @@
         public static string SubKeyHeader = "Ocp-Apim-Subscription-Key";
         public static string EnvHeader = "X-Target-Environment";
         public static string PaymentReferenceHeader = "X-Reference-Id";
-        public static string AuthHeader = "Authorization"; 
+        public static string AuthHeader = "Authorization";
+        public static string CallbackUrlHeader = "X-Callback-Url"; 
     }
 }
