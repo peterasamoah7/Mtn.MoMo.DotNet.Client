@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using MobileMoney.Models;
+using MtnMomo.DotNet.Client.Collection.Client;
+using MtnMomo.DotNet.Client.Common.Models;
+using MtnMomo.DotNet.Client.Disbursements.Client;
+using MtnMomo.DotNet.Client.Remittance.Client;
 
 namespace MobileMoney.Controllers
 {
@@ -11,29 +12,45 @@ namespace MobileMoney.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly ICollectionClient collectionClient;
+        private readonly IDisbursementsClient disbursementsClient;
+        private readonly IRemittanceClient remittanceClient;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ICollectionClient collectionClient, IDisbursementsClient disbursementsClient, IRemittanceClient remittanceClient)
         {
-            _logger = logger;
+            this.collectionClient = collectionClient;
+            this.disbursementsClient = disbursementsClient;
+            this.remittanceClient = remittanceClient; 
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IActionResult> Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            //var collection = new Collection();
+
+            var model = new TransferRequest
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+                //Amount = "20",
+                //Currency = "EUR",
+                //ExternalId = "222",
+                //Payee = new MtnMomo.DotNet.Client.Common.Models.Response.Payee
+                //{
+                //    PartyId = "0557143132",
+                //    PartyIdType = MtnMomo.DotNet.Client.Common.PartyIdType.MSISDN
+                //},
+                //PayerMessage = "test",
+                //PayeeNote = "test"
+            };
+
+            var response = await remittanceClient.PostTransfer(model);
+
+            //var response = await collectionClient.AccountHolder(PartyIdType.MSISDN.ToString().ToLower(), "0545555555");
+
+            //var response = await collectionClient.AccountBalance(); 
+
+            //var response = await collectionClient.GetRequestToPay("c67c4c47-f896-48d5-aeb3-643e2564e283");
+
+            return Ok(response);
         }
     }
 }

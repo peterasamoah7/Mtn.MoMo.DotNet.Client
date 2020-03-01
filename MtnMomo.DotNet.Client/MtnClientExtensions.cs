@@ -1,14 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
 using MtnMomo.DotNet.Client.Collection.Client;
 using MtnMomo.DotNet.Client.Collection.Models.Config;
 using MtnMomo.DotNet.Client.Common;
@@ -19,21 +9,15 @@ using MtnMomo.DotNet.Client.Disbursements.Client;
 using MtnMomo.DotNet.Client.Disbursements.Models.Config;
 using MtnMomo.DotNet.Client.Remittance.Client;
 using MtnMomo.DotNet.Client.Remittance.Models.Config;
+using System;
 
-namespace MobileMoney
+namespace MtnMomo.DotNet.Client
 {
-    public class Startup
+    public static class MtnClientExtensions
     {
-        public Startup(IConfiguration configuration)
+        public static IServiceCollection AddMtnSandbox(this IServiceCollection services)
         {
-            Configuration = configuration;
-        }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
             services.AddHttpClient(Constants.MtnClient, c => {
                 c.BaseAddress = new Uri(Constants.Sandbox);
                 c.DefaultRequestHeaders.Add(Constants.EnvHeader, "sandbox");
@@ -78,25 +62,17 @@ namespace MobileMoney
             services.AddScoped<IRemittanceClient, RemittanceClient>();
             services.AddScoped<ITransferClient, TransferClient>();
 
-            services.AddControllers();
+            return services;
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public static IServiceCollection AddMtnDisbursementClient(this IServiceCollection services)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            return services; 
+        }
 
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+        public static IServiceCollection AddMtnRemittanceClient(this IServiceCollection services)
+        {
+            return services; 
         }
     }
 }
