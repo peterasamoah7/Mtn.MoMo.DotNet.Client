@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MtnMomo.DotNet.Client.Common.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -26,13 +27,19 @@ namespace MtnMomo.DotNet.Client.Common.Http
         /// <param name="requestUri"></param>
         /// <param name="clientName"></param>
         /// <returns></returns>
-        public async Task<T> GetAsync<T>(string requestUri, string clientName) where T : class
+        public async Task<ClientResponse<T>> GetAsync<T>(string requestUri, string clientName, IEnumerable<KeyValuePair<string, string>> headers = null) where T : class
         {
             var request = GetRequestMessage(HttpMethod.Get, requestUri);
 
-            var response = await SendAsync(clientName, request);
+            var response = await SendAsync(clientName, request, headers);
 
-            return response.IsSuccessStatusCode ? JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync()) : null;
+            var data = await response.Content.ReadAsStringAsync(); 
+
+            return new ClientResponse<T>
+            {
+                Data = response.IsSuccessStatusCode && !string.IsNullOrEmpty(data) ? Utils.Deserialize<T>(data) : null,
+                StatusCode = response.StatusCode
+            };
         }
 
         /// <summary>
@@ -43,13 +50,19 @@ namespace MtnMomo.DotNet.Client.Common.Http
         /// <param name="clientName"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public async Task<T> PostAsync<T>(string requestUri, string clientName, object value) where T : class
+        public async Task<ClientResponse<T>> PostAsync<T>(string requestUri, string clientName, object value, IEnumerable<KeyValuePair<string, string>> headers = null) where T : class
         {
             var request = GetRequestMessage(HttpMethod.Post, requestUri, value);
 
-            var response = await SendAsync(clientName, request);
+            var response = await SendAsync(clientName, request, headers);
 
-            return response.IsSuccessStatusCode ? JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync()) : null;
+            var data = await response.Content.ReadAsStringAsync();
+
+            return new ClientResponse<T>
+            {
+                Data = response.IsSuccessStatusCode && !string.IsNullOrEmpty(data) ? Utils.Deserialize<T>(data) : null,
+                StatusCode = response.StatusCode
+            };
         }
 
         /// <summary>
@@ -59,11 +72,16 @@ namespace MtnMomo.DotNet.Client.Common.Http
         /// <param name="clientName"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public async Task<HttpResponseMessage> PostAsync(string requestUri, string clientName, object value)
+        public async Task<ClientResponse> PostAsync(string requestUri, string clientName, object value, IEnumerable<KeyValuePair<string, string>> headers = null)
         {
             var request = GetRequestMessage(HttpMethod.Post, requestUri, value);
 
-            return await SendAsync(clientName, request);
+            var response =  await SendAsync(clientName, request, headers);
+
+            return new ClientResponse
+            {
+                StatusCode = response.StatusCode
+            };
         }
 
         /// <summary>
@@ -72,11 +90,16 @@ namespace MtnMomo.DotNet.Client.Common.Http
         /// <param name="requestUri"></param>
         /// <param name="clientName"></param>
         /// <returns></returns>
-        public async Task<HttpResponseMessage> GetAsync(string requestUri, string clientName)
+        public async Task<ClientResponse> GetAsync(string requestUri, string clientName, IEnumerable<KeyValuePair<string, string>> headers = null)
         {
             var request = GetRequestMessage(HttpMethod.Get, requestUri);
 
-            return await SendAsync(clientName, request);
+            var response = await SendAsync(clientName, request, headers);
+
+            return new ClientResponse
+            {
+                StatusCode = response.StatusCode
+            };
         }
 
         /// <summary>
@@ -104,9 +127,17 @@ namespace MtnMomo.DotNet.Client.Common.Http
         /// <param name="clientName"></param>
         /// <param name="requestMessage"></param>
         /// <returns></returns>
-        private async Task<HttpResponseMessage> SendAsync(string clientName, HttpRequestMessage requestMessage)
+        private async Task<HttpResponseMessage> SendAsync(string clientName, HttpRequestMessage requestMessage, IEnumerable<KeyValuePair<string, string>> headers = null)
         {
             var client = httpClientFactory.CreateClient(clientName);
+
+            if(headers != null)
+            {
+                foreach(var header in headers)
+                {
+                    client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                }
+            }
 
             return await client.SendAsync(requestMessage);
         }

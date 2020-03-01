@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MtnMomo.DotNet.Client.Common.Models;
+using System.Threading.Tasks;
 
 namespace MtnMomo.DotNet.Client.Common.Client
 {
     public interface ITokenClient
     {
+        Task<ClientResponse<TokenResponse>> GetToken(TokenRequest tokenRequest);
     }
 }

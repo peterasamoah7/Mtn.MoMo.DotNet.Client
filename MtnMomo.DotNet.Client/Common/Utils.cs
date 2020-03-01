@@ -48,7 +48,6 @@ namespace MtnMomo.DotNet.Client.Common
             byte[] data = Encoding.ASCII.GetBytes(value);
             var base64Encoded = Convert.ToBase64String(data);
 
-
             return base64Encoded;
         }
     }

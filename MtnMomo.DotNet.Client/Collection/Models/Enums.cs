@@ -6,4 +6,10 @@
         EMAIL,
         PARTY_CODE
     }
+
+    public enum Status
+    {
+        Successful,
+        Failed
+    }
 }
