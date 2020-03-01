@@ -1,7 +1,7 @@
-﻿using MtnMomo.DotNet.Client.Disbursements.Models.Shared;
+﻿using MtnMomo.DotNet.Client.Common.Models.Response;
 using Newtonsoft.Json;
 
-namespace MtnMomo.DotNet.Client.Disbursements.Models.Request
+namespace MtnMomo.DotNet.Client.Common.Models
 {
     public class TransferRequest
     {

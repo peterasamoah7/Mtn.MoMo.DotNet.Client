@@ -1,7 +1,7 @@
 ﻿using MtnMomo.DotNet.Client.Common;
 using Newtonsoft.Json;
 
-namespace MtnMomo.DotNet.Client.Disbursements.Models.Shared
+namespace MtnMomo.DotNet.Client.Common.Models.Response
 {
     public class Payee
     {

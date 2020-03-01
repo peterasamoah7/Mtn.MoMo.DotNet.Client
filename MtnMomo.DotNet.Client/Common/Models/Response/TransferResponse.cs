@@ -1,11 +1,6 @@
-﻿using MtnMomo.DotNet.Client.Common.Models.Response;
-using MtnMomo.DotNet.Client.Disbursements.Models.Shared;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
 
-namespace MtnMomo.DotNet.Client.Disbursements.Models.Response
+namespace MtnMomo.DotNet.Client.Common.Models.Response
 {
     public class TransferResponse
     {

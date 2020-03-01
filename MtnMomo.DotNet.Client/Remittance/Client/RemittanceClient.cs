@@ -3,28 +3,28 @@ using MtnMomo.DotNet.Client.Common.Config;
 using MtnMomo.DotNet.Client.Common.Models;
 using MtnMomo.DotNet.Client.Common.Models.Request;
 using MtnMomo.DotNet.Client.Common.Models.Response;
-using MtnMomo.DotNet.Client.Disbursements.Models;
-using MtnMomo.DotNet.Client.Disbursements.Models.Config;
+using MtnMomo.DotNet.Client.Remittance.Models;
+using MtnMomo.DotNet.Client.Remittance.Models.Config;
 using System.Threading.Tasks;
 
-namespace MtnMomo.DotNet.Client.Disbursements.Client
+namespace MtnMomo.DotNet.Client.Remittance.Client
 {
-    public class DisbursementsClient : IDisbursementsClient
+    public class RemittanceClient : IRemittanceClient
     {
         private readonly ITokenClient tokenClient;
         private readonly IAccountBalanceClient accountBalanceClient;
         private readonly IAccountHolderClient accountHolderClient;
-        private readonly ITransferClient transferClient; 
-        private readonly DisbursementsConfig disbursementConfig;
-         
-        public DisbursementsClient(
-            DisbursementsConfig disbursementConfig,
+        private readonly ITransferClient transferClient;
+        private readonly RemittanceConfig remittanceConfig;
+
+        public RemittanceClient(
+            RemittanceConfig remittanceConfig,
             ITokenClient tokenClient,
             IAccountBalanceClient accountBalanceClient,
             IAccountHolderClient accountHolderClient,
             ITransferClient transferClient)
         {
-            this.disbursementConfig = disbursementConfig;
+            this.remittanceConfig = remittanceConfig;
             this.tokenClient = tokenClient;
             this.accountBalanceClient = accountBalanceClient;
             this.accountHolderClient = accountHolderClient;
@@ -39,10 +39,10 @@ namespace MtnMomo.DotNet.Client.Disbursements.Client
         {
             var tokenRequest = new TokenRequest
             {
-                RequestUri = DisbursementsRequestUri.Token,
-                ApiKey = disbursementConfig.ApiKey,
-                SubscriptionKey = disbursementConfig.SubscriptionKey,
-                UserId = disbursementConfig.UserId
+                RequestUri = RemittanceRequestUri.Token,
+                ApiKey = remittanceConfig.ApiKey,
+                SubscriptionKey = remittanceConfig.SubscriptionKey,
+                UserId = remittanceConfig.UserId
             };
 
             var token = await tokenClient.GetToken(tokenRequest);
@@ -61,12 +61,12 @@ namespace MtnMomo.DotNet.Client.Disbursements.Client
 
             var transferConfig = new TransferConfig
             {
-                SubscriptionKey = disbursementConfig.SubscriptionKey,
-                RequestUri = DisbursementsRequestUri.Transfer,
+                SubscriptionKey = remittanceConfig.SubscriptionKey,
+                RequestUri = RemittanceRequestUri.Transfer,
                 Token = token.AccessToken
             };
 
-            return await transferClient.PostTransfer(request, transferConfig, callbackUrl);             
+            return await transferClient.PostTransfer(request, transferConfig, callbackUrl);
         }
 
         /// <summary>
@@ -80,12 +80,12 @@ namespace MtnMomo.DotNet.Client.Disbursements.Client
 
             var transferConfig = new TransferConfig
             {
-                SubscriptionKey = disbursementConfig.SubscriptionKey,
-                RequestUri = DisbursementsRequestUri.Transfer,
+                SubscriptionKey = remittanceConfig.SubscriptionKey,
+                RequestUri = RemittanceRequestUri.Transfer,
                 Token = token.AccessToken
             };
 
-            return await transferClient.GetTransfer(referenceId, transferConfig);          
+            return await transferClient.GetTransfer(referenceId, transferConfig);
         }
 
         /// <summary>
@@ -98,8 +98,8 @@ namespace MtnMomo.DotNet.Client.Disbursements.Client
 
             var accountBalanceRquest = new AccountBalanceRequest
             {
-                SubscriptionKey = disbursementConfig.SubscriptionKey,
-                RequestUri = DisbursementsRequestUri.AccountBalance,
+                SubscriptionKey = remittanceConfig.SubscriptionKey,
+                RequestUri = RemittanceRequestUri.AccountBalance,
                 Token = token.AccessToken
             };
 
@@ -118,10 +118,10 @@ namespace MtnMomo.DotNet.Client.Disbursements.Client
 
             var accountHolderRequest = new AccountHolderRequest
             {
-                SubscriptionKey = disbursementConfig.SubscriptionKey,
+                SubscriptionKey = remittanceConfig.SubscriptionKey,
                 AccountHolderId = accountHolderId,
                 AccountHolderIdType = accountHolderIdType,
-                RequestUri = DisbursementsRequestUri.AccountHolder,
+                RequestUri = RemittanceRequestUri.AccountHolder,
                 Token = token.AccessToken
             };
 

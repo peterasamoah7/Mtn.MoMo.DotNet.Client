@@ -1,10 +1,13 @@
 ﻿using MtnMomo.DotNet.Client.Common.Models;
 using MtnMomo.DotNet.Client.Common.Models.Response;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace MtnMomo.DotNet.Client.Disbursements.Client
+namespace MtnMomo.DotNet.Client.Remittance.Client
 {
-    public interface IDisbursementsClient
+    public interface IRemittanceClient
     {
         Task<ClientResponse<AccountBalanceResponse>> AccountBalance();
         Task<ClientResponse> AccountHolder(string accountHolderIdType, string accountHolderId);
