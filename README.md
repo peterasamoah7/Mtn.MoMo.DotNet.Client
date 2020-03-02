@@ -42,6 +42,9 @@ public class PaymentController : Controller
 
 ```
 
+## Sample Usage
+See sample project included https://github.com/peterasamoah7/Mtn.MoMo.DotNet.Client/tree/master/MtnMomo.Sample
+
 ## Contributing
 
 Please feel free to contact me if you want to contribute.
