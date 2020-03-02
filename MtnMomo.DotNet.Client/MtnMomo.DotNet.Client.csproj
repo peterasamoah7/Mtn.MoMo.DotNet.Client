@@ -7,6 +7,11 @@
     <Authors>Peter Asamoah</Authors>
     <PackageTags />
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <RepositoryType>Github</RepositoryType>
+    <RepositoryUrl>https://github.com/peterasamoah7/Mtn.MoMo.DotNet.Client</RepositoryUrl>
+    <NeutralLanguage>en-GH</NeutralLanguage>
+    <PackageProjectUrl>https://github.com/peterasamoah7/Mtn.MoMo.DotNet.Client</PackageProjectUrl>
+    <Description>A DotNet Client library for MTN Mobile Money API</Description>
   </PropertyGroup>
 
   <ItemGroup>
