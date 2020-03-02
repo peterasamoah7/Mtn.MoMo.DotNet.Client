@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MtnMomo.DotNet.Client.Disbursements.Models.Config
+﻿namespace MtnMomo.DotNet.Client.Disbursements.Models.Config
 {
     public class DisbursementsConfig
     {

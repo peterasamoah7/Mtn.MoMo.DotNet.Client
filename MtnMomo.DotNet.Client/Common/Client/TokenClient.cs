@@ -9,7 +9,7 @@ namespace MtnMomo.DotNet.Client.Common.Client
 {
     public class TokenClient : ITokenClient
     {
-        private readonly IBaseClient baseClient; 
+        private readonly IBaseClient baseClient;
 
         public TokenClient(IBaseClient baseClient)
         {
@@ -29,9 +29,9 @@ namespace MtnMomo.DotNet.Client.Common.Client
                 new KeyValuePair<string, string>(Constants.SubKeyHeader, tokenRequest.SubscriptionKey)
             };
 
-            var response = await baseClient.PostAsync<TokenResponse>(tokenRequest.RequestUri, Constants.MtnClient, null, headers); 
+            var response = await baseClient.PostAsync<TokenResponse>(tokenRequest.RequestUri, Constants.MtnClient, null, headers);
 
-            return response; 
+            return response;
         }
     }
 }

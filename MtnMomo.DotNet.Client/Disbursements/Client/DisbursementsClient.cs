@@ -1,12 +1,10 @@
-﻿using MtnMomo.DotNet.Client.Common;
-using MtnMomo.DotNet.Client.Common.Client.Interfaces;
+﻿using MtnMomo.DotNet.Client.Common.Client.Interfaces;
 using MtnMomo.DotNet.Client.Common.Config;
 using MtnMomo.DotNet.Client.Common.Models;
 using MtnMomo.DotNet.Client.Common.Models.Request;
 using MtnMomo.DotNet.Client.Common.Models.Response;
 using MtnMomo.DotNet.Client.Disbursements.Models;
 using MtnMomo.DotNet.Client.Disbursements.Models.Config;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace MtnMomo.DotNet.Client.Disbursements.Client
@@ -16,9 +14,9 @@ namespace MtnMomo.DotNet.Client.Disbursements.Client
         private readonly ITokenClient tokenClient;
         private readonly IAccountBalanceClient accountBalanceClient;
         private readonly IAccountHolderClient accountHolderClient;
-        private readonly ITransferClient transferClient; 
+        private readonly ITransferClient transferClient;
         private readonly DisbursementsConfig disbursementConfig;
-         
+
         public DisbursementsClient(
             DisbursementsConfig disbursementConfig,
             ITokenClient tokenClient,
@@ -59,7 +57,7 @@ namespace MtnMomo.DotNet.Client.Disbursements.Client
         /// <returns></returns>
         public async Task<ClientResponse<string>> PostTransfer(TransferRequest request, string callbackUrl = null)
         {
-            var token = await GetToken();     
+            var token = await GetToken();
 
             var transferConfig = new TransferConfig
             {
@@ -68,7 +66,7 @@ namespace MtnMomo.DotNet.Client.Disbursements.Client
                 Token = token?.AccessToken
             };
 
-            return await transferClient.PostTransfer(request, transferConfig, callbackUrl);             
+            return await transferClient.PostTransfer(request, transferConfig, callbackUrl);
         }
 
         /// <summary>
@@ -78,7 +76,7 @@ namespace MtnMomo.DotNet.Client.Disbursements.Client
         /// <returns></returns>
         public async Task<ClientResponse<TransferResponse>> GetTransfer(string referenceId)
         {
-            var token = await GetToken();        
+            var token = await GetToken();
 
             var transferConfig = new TransferConfig
             {
@@ -87,7 +85,7 @@ namespace MtnMomo.DotNet.Client.Disbursements.Client
                 Token = token?.AccessToken
             };
 
-            return await transferClient.GetTransfer(referenceId, transferConfig);          
+            return await transferClient.GetTransfer(referenceId, transferConfig);
         }
 
         /// <summary>

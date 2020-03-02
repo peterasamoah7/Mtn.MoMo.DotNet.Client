@@ -65,7 +65,7 @@ namespace MtnMomo.DotNet.Client.Collection.Client
         {
             var token = await GetToken();
 
-            if(string.IsNullOrEmpty(token?.AccessToken))
+            if (string.IsNullOrEmpty(token?.AccessToken))
             {
                 return new ClientResponse<string> { Status = Status.Failed.ToString(), StatusCode = HttpStatusCode.Unauthorized };
             }
@@ -115,7 +115,7 @@ namespace MtnMomo.DotNet.Client.Collection.Client
             var response = await baseClient.GetAsync<GetReqesutToPayReponse>($"{CollectionRequestUri.RequestToPay}/{referenceId}", Constants.MtnClient, headers);
             response.Status = response.StatusCode == HttpStatusCode.OK ? Status.Successful.ToString() : Status.Failed.ToString();
 
-            return response; 
+            return response;
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace MtnMomo.DotNet.Client.Collection.Client
         /// <returns></returns>
         public async Task<ClientResponse<AccountBalanceResponse>> AccountBalance()
         {
-            var token = await GetToken();      
+            var token = await GetToken();
 
             var accountBalanceRquest = new AccountBalanceRequest
             {
@@ -133,7 +133,7 @@ namespace MtnMomo.DotNet.Client.Collection.Client
                 Token = token?.AccessToken
             };
 
-            return await accountBalanceClient.AccountBalance(accountBalanceRquest);          
+            return await accountBalanceClient.AccountBalance(accountBalanceRquest);
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace MtnMomo.DotNet.Client.Collection.Client
                 Token = token?.AccessToken
             };
 
-            return await accountHolderClient.AccountHolder(accountHolderRequest);        
+            return await accountHolderClient.AccountHolder(accountHolderRequest);
         }
 
     }

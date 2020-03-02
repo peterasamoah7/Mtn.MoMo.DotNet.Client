@@ -1,5 +1,4 @@
-﻿using MtnMomo.DotNet.Client.Common;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace MtnMomo.DotNet.Client.Common.Models.Response
 {

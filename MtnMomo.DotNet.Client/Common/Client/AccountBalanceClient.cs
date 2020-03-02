@@ -1,6 +1,5 @@
 ﻿using MtnMomo.DotNet.Client.Common.Client.Interfaces;
 using MtnMomo.DotNet.Client.Common.Http;
-using MtnMomo.DotNet.Client.Common.Models;
 using MtnMomo.DotNet.Client.Common.Models.Request;
 using MtnMomo.DotNet.Client.Common.Models.Response;
 using System.Collections.Generic;

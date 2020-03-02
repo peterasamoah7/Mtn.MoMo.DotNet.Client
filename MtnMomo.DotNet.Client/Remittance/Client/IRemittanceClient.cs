@@ -1,8 +1,5 @@
 ﻿using MtnMomo.DotNet.Client.Common.Models;
 using MtnMomo.DotNet.Client.Common.Models.Response;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MtnMomo.DotNet.Client.Remittance.Client

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MtnMomo.DotNet.Client.Common.Models.Request
+﻿namespace MtnMomo.DotNet.Client.Common.Models.Request
 {
     public class AccountBalanceRequest
     {

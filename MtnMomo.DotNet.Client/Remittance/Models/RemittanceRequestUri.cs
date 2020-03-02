@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MtnMomo.DotNet.Client.Remittance.Models
+﻿namespace MtnMomo.DotNet.Client.Remittance.Models
 {
     public static class RemittanceRequestUri
     {

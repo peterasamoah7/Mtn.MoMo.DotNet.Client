@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MtnMomo.DotNet.Client.Common.Models
+﻿namespace MtnMomo.DotNet.Client.Common.Models
 {
     public class TokenRequest
     {

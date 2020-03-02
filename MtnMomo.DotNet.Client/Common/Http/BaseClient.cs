@@ -31,7 +31,7 @@ namespace MtnMomo.DotNet.Client.Common.Http
 
             var response = await SendAsync(clientName, request, headers);
 
-            var data = await response.Content.ReadAsStringAsync(); 
+            var data = await response.Content.ReadAsStringAsync();
 
             return new ClientResponse<T>
             {
@@ -74,7 +74,7 @@ namespace MtnMomo.DotNet.Client.Common.Http
         {
             var request = GetRequestMessage(HttpMethod.Post, requestUri, value);
 
-            var response =  await SendAsync(clientName, request, headers);
+            var response = await SendAsync(clientName, request, headers);
 
             return new ClientResponse
             {
@@ -109,12 +109,12 @@ namespace MtnMomo.DotNet.Client.Common.Http
         /// <returns></returns>
         private HttpRequestMessage GetRequestMessage(HttpMethod method, string requestUri, object value = null)
         {
-            if(method == HttpMethod.Get)
+            if (method == HttpMethod.Get)
             {
                 return new HttpRequestMessage(HttpMethod.Get, requestUri);
             }
 
-            var content = value != null  ? new StringContent(Utils.Serialize(value), Encoding.UTF8, "application/json") : null;
+            var content = value != null ? new StringContent(Utils.Serialize(value), Encoding.UTF8, "application/json") : null;
 
             return new HttpRequestMessage(HttpMethod.Post, requestUri) { Content = content };
         }
@@ -129,9 +129,9 @@ namespace MtnMomo.DotNet.Client.Common.Http
         {
             var client = httpClientFactory.CreateClient(clientName);
 
-            if(headers != null)
+            if (headers != null)
             {
-                foreach(var header in headers)
+                foreach (var header in headers)
                 {
                     client.DefaultRequestHeaders.Add(header.Key, header.Value);
                 }
