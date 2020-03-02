@@ -71,7 +71,7 @@ namespace MtnMomo.DotNet.Client
         /// <param name="services"></param>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static IServiceCollection AdMtnCollectionClient(this IServiceCollection services, CollectionConfig config)
+        public static IServiceCollection AddMtnCollectionClient(this IServiceCollection services, CollectionConfig config)
         {
             services.AddHttpClient(Constants.MtnClient, c => {
                 c.BaseAddress = new Uri(Constants.Sandbox);
