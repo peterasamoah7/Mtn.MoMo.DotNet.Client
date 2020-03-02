@@ -5,6 +5,7 @@
     <Company></Company>
     <Product>MtnMomoDotNetClient</Product>
     <Authors>Peter Asamoah</Authors>
+    <PackageTags />
   </PropertyGroup>
 
   <ItemGroup>
