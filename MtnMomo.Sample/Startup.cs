@@ -10,6 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MtnMomo.DotNet.Client;
+using MtnMomo.DotNet.Client.Collection.Models.Config;
+using MtnMomo.DotNet.Client.Disbursements.Models.Config;
+using MtnMomo.DotNet.Client.Remittance.Models.Config;
 
 namespace MtnMomo.Sample
 {
@@ -26,7 +30,10 @@ namespace MtnMomo.Sample
         public void ConfigureServices(IServiceCollection services)
         {
             //register mtn momo client
-            services.AddMtnCollectionClient()
+            services
+                .AddMtnCollectionClient(new CollectionConfig { })
+                .AddMtnDisbursementsClient(new DisbursementsConfig { })
+                .AddMtnRemittanceClient(new RemittanceConfig { });
 
             services.AddControllers();
         }
