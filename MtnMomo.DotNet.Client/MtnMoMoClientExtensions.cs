@@ -13,7 +13,7 @@ using System;
 
 namespace MtnMomo.DotNet.Client
 {
-    public static class MtnClientExtensions
+    public static class MtnMoMoClientExtensions
     {
         public static IServiceCollection AddMtnSandbox(this IServiceCollection services)
         {
