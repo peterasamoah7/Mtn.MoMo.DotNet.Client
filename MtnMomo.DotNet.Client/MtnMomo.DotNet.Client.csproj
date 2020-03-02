@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Company></Company>
+    <Product>MtnMomoDotNetClient</Product>
+    <Authors>Peter Asamoah</Authors>
   </PropertyGroup>
 
   <ItemGroup>
