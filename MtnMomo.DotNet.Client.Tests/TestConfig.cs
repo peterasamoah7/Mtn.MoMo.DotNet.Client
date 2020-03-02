@@ -22,6 +22,9 @@ namespace MtnMomo.DotNet.Client.Tests
         {
             var services = new ServiceCollection();
 
+            /**
+             * Change keys if running tests locally
+             */
             var config = new CollectionConfig
             {
                 ApiKey = "c0b63594ff1d4676b25d08d77216a400",
@@ -58,9 +61,12 @@ namespace MtnMomo.DotNet.Client.Tests
         {
             var services = new ServiceCollection();
 
+            /**
+            * Change keys if running tests locally
+            */
             var config = new DisbursementsConfig
             {
-                ApiKey = "200a55998bba461099093c9f2b34a26a",
+                ApiKey = "aca73c1f015747778980783cbc0db2d7",
                 SubscriptionKey = "20b05f1a1e48469993c68fc182ae6453",
                 UserId = "7706a623-7c1c-4d25-9cea-06cf06fbda51",
                 Environment = "sandbox",
@@ -95,9 +101,12 @@ namespace MtnMomo.DotNet.Client.Tests
         {
             var services = new ServiceCollection();
 
+            /**
+            * Change keys if running tests locally
+            */
             var config = new RemittanceConfig
             {
-                ApiKey = "0b34dd8e1616441b9cc44c41dff9fdcf",
+                ApiKey = "c16cb022f6ee4c82acaa635b3eea2ebd",
                 SubscriptionKey = "cf4f7a46c6804d69b7d605a3e304ffe2",
                 UserId = "7706a623-7c1c-4d25-9cea-06cf06fbda51",
                 Environment = "sandbox",
