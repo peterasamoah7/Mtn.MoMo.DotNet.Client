@@ -38,7 +38,8 @@ namespace MtnMomo.Sample
                 SubscriptionKey = "4ae1cbdd3f744fc283b9a3339a444003",
                 UserId = "1bfc600a-a6e1-4c1b-ba66-5fee8038c056",
                 Environment = "sandbox",
-                Sandbox = true
+                Sandbox = false, //no need to provide base url if sandbox only set this to true, this will default to sandbox url
+                BaseUrl = "<your_production_url>"
             };
             //disbursement client config
             //var dconfig = new DisbursementsConfig
@@ -47,7 +48,8 @@ namespace MtnMomo.Sample
             //    SubscriptionKey = "f1d94c7aabd64fc0af6bfd0a2353c020",
             //    UserId = "1bfc600a-a6e1-4c1b-ba66-5fee8038c056",
             //    Environment = "sandbox",
-            //    Sandbox = true
+            //    Sandbox = false, //no need to provide base url if sandbox only set this to true, this will default to sandbox url
+            //    BaseUrl = "<your_production_url>"
             //};
             //remittace client config
             //var rconfig = new RemittanceConfig
@@ -56,7 +58,8 @@ namespace MtnMomo.Sample
             //    SubscriptionKey = "64fe810144b240298a83bc73ddf85d67",
             //    UserId = "1bfc600a-a6e1-4c1b-ba66-5fee8038c056",
             //    Environment = "sandbox",
-            //    Sandbox = true
+            //    Sandbox = false, //no need to provide base url if sandbox only set this to true, this will default to sandbox url
+            //    BaseUrl = "<your_product_url>"
             //};
 
 

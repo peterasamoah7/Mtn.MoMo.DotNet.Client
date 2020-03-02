@@ -10,5 +10,6 @@
         public string ApiKey { get; set; }
         public string Environment { get; set; }
         public bool Sandbox { get; set; }
+        public string BaseUrl { get; set; }
     }
 }

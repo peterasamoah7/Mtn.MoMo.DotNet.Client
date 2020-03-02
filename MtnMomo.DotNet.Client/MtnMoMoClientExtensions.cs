@@ -25,7 +25,7 @@ namespace MtnMomo.DotNet.Client
         {
             services.AddHttpClient(Constants.MtnClient, c =>
             {
-                c.BaseAddress = new Uri(Constants.Sandbox);
+                c.BaseAddress = config.Sandbox ? new Uri(Constants.Sandbox) : new Uri(config.BaseUrl); 
                 c.DefaultRequestHeaders.Add(Constants.EnvHeader, "sandbox");
             });
 
@@ -47,7 +47,7 @@ namespace MtnMomo.DotNet.Client
         {
             services.AddHttpClient(Constants.MtnClient, c =>
             {
-                c.BaseAddress = new Uri(Constants.Sandbox);
+                c.BaseAddress = config.Sandbox ? new Uri(Constants.Sandbox) : new Uri(config.BaseUrl);
                 c.DefaultRequestHeaders.Add(Constants.EnvHeader, "sandbox");
             });
 
@@ -70,7 +70,7 @@ namespace MtnMomo.DotNet.Client
         {
             services.AddHttpClient(Constants.MtnClient, c =>
             {
-                c.BaseAddress = new Uri(Constants.Sandbox);
+                c.BaseAddress = config.Sandbox ? new Uri(Constants.Sandbox) : new Uri(config.BaseUrl);
                 c.DefaultRequestHeaders.Add(Constants.EnvHeader, "sandbox");
             });
 
