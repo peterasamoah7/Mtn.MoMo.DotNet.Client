@@ -28,6 +28,11 @@ namespace MtnMomo.DotNet.Client.Common.Client
         /// <returns></returns>
         public async Task<ClientResponse<string>> PostTransfer(TransferRequest request, TransferConfig config, string callbackUrl = null)
         {
+            if (string.IsNullOrEmpty(config.Token))
+            {
+                return new ClientResponse<string> { Status = Status.Failed.ToString(), StatusCode = HttpStatusCode.Unauthorized };
+            }
+
             var paymentReference = Guid.NewGuid().ToString();
 
             var headers = new List<KeyValuePair<string, string>>
@@ -58,6 +63,11 @@ namespace MtnMomo.DotNet.Client.Common.Client
         /// <returns></returns>
         public async Task<ClientResponse<TransferResponse>> GetTransfer(string referenceId, TransferConfig config)
         {
+            if (string.IsNullOrEmpty(config.Token))
+            {
+                return new ClientResponse<TransferResponse> { Status = Status.Failed.ToString(), StatusCode = HttpStatusCode.Unauthorized };
+            }
+
             var headers = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>(Constants.SubKeyHeader, config.SubscriptionKey),

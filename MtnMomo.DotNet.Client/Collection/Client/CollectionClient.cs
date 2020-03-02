@@ -65,6 +65,11 @@ namespace MtnMomo.DotNet.Client.Collection.Client
         {
             var token = await GetToken();
 
+            if(string.IsNullOrEmpty(token?.AccessToken))
+            {
+                return new ClientResponse<string> { Status = Status.Failed.ToString(), StatusCode = HttpStatusCode.Unauthorized };
+            }
+
             var paymentReference = Guid.NewGuid().ToString();
 
             var headers = new List<KeyValuePair<string, string>>
@@ -96,6 +101,11 @@ namespace MtnMomo.DotNet.Client.Collection.Client
         {
             var token = await GetToken();
 
+            if (string.IsNullOrEmpty(token?.AccessToken))
+            {
+                return new ClientResponse<GetReqesutToPayReponse> { Status = Status.Failed.ToString(), StatusCode = HttpStatusCode.Unauthorized };
+            }
+
             var headers = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>(Constants.SubKeyHeader, collectionConfig.SubscriptionKey),
@@ -114,13 +124,13 @@ namespace MtnMomo.DotNet.Client.Collection.Client
         /// <returns></returns>
         public async Task<ClientResponse<AccountBalanceResponse>> AccountBalance()
         {
-            var token = await GetToken();
+            var token = await GetToken();      
 
             var accountBalanceRquest = new AccountBalanceRequest
             {
                 SubscriptionKey = collectionConfig.SubscriptionKey,
                 RequestUri = CollectionRequestUri.AccountBalance,
-                Token = token.AccessToken
+                Token = token?.AccessToken
             };
 
             return await accountBalanceClient.AccountBalance(accountBalanceRquest);          
@@ -142,7 +152,7 @@ namespace MtnMomo.DotNet.Client.Collection.Client
                 AccountHolderId = accountHolderId,
                 AccountHolderIdType = accountHolderIdType,
                 RequestUri = CollectionRequestUri.AccountHolder,
-                Token = token.AccessToken
+                Token = token?.AccessToken
             };
 
             return await accountHolderClient.AccountHolder(accountHolderRequest);        

@@ -25,6 +25,11 @@ namespace MtnMomo.DotNet.Client.Common.Client
         /// <returns></returns>
         public async Task<ClientResponse<AccountBalanceResponse>> AccountBalance(AccountBalanceRequest request)
         {
+            if (string.IsNullOrEmpty(request.Token))
+            {
+                return new ClientResponse<AccountBalanceResponse> { Status = Status.Failed.ToString(), StatusCode = HttpStatusCode.Unauthorized };
+            }
+
             var headers = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>(Constants.SubKeyHeader, request.SubscriptionKey),

@@ -63,7 +63,7 @@ namespace MtnMomo.DotNet.Client.Remittance.Client
             {
                 SubscriptionKey = remittanceConfig.SubscriptionKey,
                 RequestUri = RemittanceRequestUri.Transfer,
-                Token = token.AccessToken
+                Token = token?.AccessToken
             };
 
             return await transferClient.PostTransfer(request, transferConfig, callbackUrl);
@@ -82,7 +82,7 @@ namespace MtnMomo.DotNet.Client.Remittance.Client
             {
                 SubscriptionKey = remittanceConfig.SubscriptionKey,
                 RequestUri = RemittanceRequestUri.Transfer,
-                Token = token.AccessToken
+                Token = token?.AccessToken
             };
 
             return await transferClient.GetTransfer(referenceId, transferConfig);
@@ -100,7 +100,7 @@ namespace MtnMomo.DotNet.Client.Remittance.Client
             {
                 SubscriptionKey = remittanceConfig.SubscriptionKey,
                 RequestUri = RemittanceRequestUri.AccountBalance,
-                Token = token.AccessToken
+                Token = token?.AccessToken
             };
 
             return await accountBalanceClient.AccountBalance(accountBalanceRquest);
@@ -122,7 +122,7 @@ namespace MtnMomo.DotNet.Client.Remittance.Client
                 AccountHolderId = accountHolderId,
                 AccountHolderIdType = accountHolderIdType,
                 RequestUri = RemittanceRequestUri.AccountHolder,
-                Token = token.AccessToken
+                Token = token?.AccessToken
             };
 
             return await accountHolderClient.AccountHolder(accountHolderRequest);

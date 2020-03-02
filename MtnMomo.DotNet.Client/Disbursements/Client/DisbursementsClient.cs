@@ -1,10 +1,12 @@
-﻿using MtnMomo.DotNet.Client.Common.Client.Interfaces;
+﻿using MtnMomo.DotNet.Client.Common;
+using MtnMomo.DotNet.Client.Common.Client.Interfaces;
 using MtnMomo.DotNet.Client.Common.Config;
 using MtnMomo.DotNet.Client.Common.Models;
 using MtnMomo.DotNet.Client.Common.Models.Request;
 using MtnMomo.DotNet.Client.Common.Models.Response;
 using MtnMomo.DotNet.Client.Disbursements.Models;
 using MtnMomo.DotNet.Client.Disbursements.Models.Config;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace MtnMomo.DotNet.Client.Disbursements.Client
@@ -57,13 +59,13 @@ namespace MtnMomo.DotNet.Client.Disbursements.Client
         /// <returns></returns>
         public async Task<ClientResponse<string>> PostTransfer(TransferRequest request, string callbackUrl = null)
         {
-            var token = await GetToken();
+            var token = await GetToken();     
 
             var transferConfig = new TransferConfig
             {
                 SubscriptionKey = disbursementConfig.SubscriptionKey,
                 RequestUri = DisbursementsRequestUri.Transfer,
-                Token = token.AccessToken
+                Token = token?.AccessToken
             };
 
             return await transferClient.PostTransfer(request, transferConfig, callbackUrl);             
@@ -76,13 +78,13 @@ namespace MtnMomo.DotNet.Client.Disbursements.Client
         /// <returns></returns>
         public async Task<ClientResponse<TransferResponse>> GetTransfer(string referenceId)
         {
-            var token = await GetToken();
+            var token = await GetToken();        
 
             var transferConfig = new TransferConfig
             {
                 SubscriptionKey = disbursementConfig.SubscriptionKey,
                 RequestUri = DisbursementsRequestUri.Transfer,
-                Token = token.AccessToken
+                Token = token?.AccessToken
             };
 
             return await transferClient.GetTransfer(referenceId, transferConfig);          
@@ -100,7 +102,7 @@ namespace MtnMomo.DotNet.Client.Disbursements.Client
             {
                 SubscriptionKey = disbursementConfig.SubscriptionKey,
                 RequestUri = DisbursementsRequestUri.AccountBalance,
-                Token = token.AccessToken
+                Token = token?.AccessToken
             };
 
             return await accountBalanceClient.AccountBalance(accountBalanceRquest);
@@ -122,7 +124,7 @@ namespace MtnMomo.DotNet.Client.Disbursements.Client
                 AccountHolderId = accountHolderId,
                 AccountHolderIdType = accountHolderIdType,
                 RequestUri = DisbursementsRequestUri.AccountHolder,
-                Token = token.AccessToken
+                Token = token?.AccessToken
             };
 
             return await accountHolderClient.AccountHolder(accountHolderRequest);

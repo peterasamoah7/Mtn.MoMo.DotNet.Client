@@ -24,6 +24,11 @@ namespace MtnMomo.DotNet.Client.Common.Client
         /// <returns></returns>
         public async Task<ClientResponse> AccountHolder(AccountHolderRequest request)
         {
+            if (string.IsNullOrEmpty(request.Token))
+            {
+                return new ClientResponse { Status = Status.Failed.ToString(), StatusCode = HttpStatusCode.Unauthorized };
+            }
+
             var headers = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>(Constants.SubKeyHeader, request.SubscriptionKey),
