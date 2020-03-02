@@ -65,14 +65,69 @@ namespace MtnMomo.DotNet.Client
             return services;
         }
 
-        public static IServiceCollection AddMtnDisbursementClient(this IServiceCollection services)
+        /// <summary>
+        /// Mtn Collection Client
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="config"></param>
+        /// <returns></returns>
+        public static IServiceCollection AdMtnCollectionClient(this IServiceCollection services, CollectionConfig config)
         {
-            return services; 
+            services.AddHttpClient(Constants.MtnClient, c => {
+                c.BaseAddress = new Uri(Constants.Sandbox);
+                c.DefaultRequestHeaders.Add(Constants.EnvHeader, "sandbox");
+            });
+
+            return services.AddScoped<IBaseClient, BaseClient>()
+                    .AddScoped<ITokenClient, TokenClient>()
+                    .AddSingleton(config)
+                    .AddScoped<ICollectionClient, CollectionClient>()
+                    .AddScoped<IAccountBalanceClient, AccountBalanceClient>()
+                    .AddScoped<IAccountHolderClient, AccountHolderClient>();
         }
 
-        public static IServiceCollection AddMtnRemittanceClient(this IServiceCollection services)
+        /// <summary>
+        /// Mtn Disbursement Client
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="config"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddMtnDisbursementsClient(this IServiceCollection services, DisbursementsConfig config)
         {
-            return services; 
+            services.AddHttpClient(Constants.MtnClient, c => {
+                c.BaseAddress = new Uri(Constants.Sandbox);
+                c.DefaultRequestHeaders.Add(Constants.EnvHeader, "sandbox");
+            });
+
+            return services.AddScoped<IBaseClient, BaseClient>()
+                    .AddScoped<ITokenClient, TokenClient>()
+                    .AddSingleton(config)
+                    .AddScoped<IDisbursementsClient, DisbursementsClient>()
+                    .AddScoped<IAccountBalanceClient, AccountBalanceClient>()
+                    .AddScoped<ITransferClient, TransferClient>()
+                    .AddScoped<IAccountHolderClient, AccountHolderClient>();
+        }
+
+        /// <summary>
+        /// Mtn Remittance Client
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="config"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddMtnRemittanceClient(this IServiceCollection services, RemittanceConfig config)
+        {
+            services.AddHttpClient(Constants.MtnClient, c => {
+                c.BaseAddress = new Uri(Constants.Sandbox);
+                c.DefaultRequestHeaders.Add(Constants.EnvHeader, "sandbox");
+            });
+
+            return services.AddScoped<IBaseClient, BaseClient>()
+                    .AddScoped<ITokenClient, TokenClient>()
+                    .AddSingleton(config)
+                    .AddScoped<IRemittanceClient, RemittanceClient>()
+                    .AddScoped<IAccountBalanceClient, AccountBalanceClient>()
+                    .AddScoped<ITransferClient, TransferClient>()
+                    .AddScoped<IAccountHolderClient, AccountHolderClient>();
         }
     }
 }
