@@ -1,35 +1,46 @@
-# Project Title
+# Mtn Mobile Money DotNet Client
 
-One Paragraph of project description goes here
+A client library for using the Mtn Mobile Money API : https://momodeveloper.mtn.com/
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
 ```
-Give examples
+Install-Package MtnMobileMoney.DotNet.Client -Version 1.0.0
 ```
 
-### Installing
+### Usage
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+Set up client library using depency injection
 
 ```
-Give the example
+var config = new CollectionConfig
+{
+    ApiKey = "ad8a5dbe6a754a108d0b122bfe8c26bb",
+    SubscriptionKey = "4ae1cbdd3f744fc283b9a3339a444003",
+    UserId = "1bfc600a-a6e1-4c1b-ba66-5fee8038c056",
+    Environment = "sandbox",
+    Sandbox = false, //no need to provide base url if sandbox only set this to true, this will default to sandbox url
+    BaseUrl = "<your_production_url>"
+};
+
+services.AddMtnCollectionClient(cconfig);
+
 ```
 
-And repeat
+Inject registered client into class
 
 ```
-until finished
-```
+public class PaymentController : Controller
+{
+    private readonly ICollectionClient collectionClient;
 
+    public PaymentController(ICollectionClient collectionClient)
+    {
+        this.collectionClient = collectionClient;
+    }
+}
+
+```
 
 ## Contributing
 
