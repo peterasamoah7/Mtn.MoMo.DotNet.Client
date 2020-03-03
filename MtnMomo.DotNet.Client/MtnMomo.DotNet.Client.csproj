@@ -12,6 +12,7 @@
     <NeutralLanguage>en-GH</NeutralLanguage>
     <PackageProjectUrl>https://github.com/peterasamoah7/Mtn.MoMo.DotNet.Client</PackageProjectUrl>
     <Description>A DotNet Client library for MTN Mobile Money API</Description>
+    <PackageId>MtnMobileMoney.DotNet.Client</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
