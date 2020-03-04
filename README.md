@@ -11,6 +11,7 @@ Install-Package MtnMobileMoney.DotNet.Client -Version 1.0.0
 ### Usage
 
 Set up client library using depency injection
+The client Mtn Mobile Money Collection, Disbusrements and Remittance APIs
 
 ```
 var config = new CollectionConfig
@@ -23,7 +24,7 @@ var config = new CollectionConfig
     BaseUrl = "<your_production_url>"
 };
 
-services.AddMtnCollectionClient(cconfig);
+services.AddMtnCollectionClient(config);
 
 ```
 
@@ -42,8 +43,33 @@ public class PaymentController : Controller
 
 ```
 
+Requests & Responses
+
+```
+Collection Methods
+1. PostRequestToPay 
+2. GetRequestToPay
+3. AccountBalance
+4. AccountHolder
+
+Disbusrements Methods
+1. PostTransfer 
+2. GetTransfer 
+3. AccountBalance
+4. AccountHolder
+
+Remittance Methods
+1. PostTransfer 
+2. GetTransfer 
+3. AccountBalance
+4. AccountHolder
+
+
+```
+
 ## Sample Usage
-See sample project included https://github.com/peterasamoah7/Mtn.MoMo.DotNet.Client/tree/master/MtnMomo.Sample
+See sample project included [Sample Project](https://github.com/peterasamoah7/Mtn.MoMo.DotNet.Client/tree/master/MtnMomo.Sample)
+See test project for all methods usage [Test Project](https://github.com/peterasamoah7/Mtn.MoMo.DotNet.Client/tree/master/MtnMomo.DotNet.Client.Tests)
 
 ## Contributing
 
