@@ -64,6 +64,20 @@ Remittance Methods
 3. AccountBalance
 4. AccountHolder
 
+Request
+All methods use custom models with the same structure as specified in [MTN Sandbox](https://momodeveloper.mtn.com/docs/services/collection/operations/requesttopay-POST)
+
+Please see [Test Project](https://github.com/peterasamoah7/Mtn.MoMo.DotNet.Client/tree/master/MtnMomo.DotNet.Client.Tests) for specific models
+
+Response Structure
+"statusCode": 200, //Http Status code
+"data": {
+        //data from MTN API
+    },
+    "status": "SUCCESSFUL", //Successful or Failed
+    "reason": null //populated if there's a failure
+},
+"status": "Successful"
 
 ```
 
