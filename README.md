@@ -43,7 +43,7 @@ public class PaymentController : Controller
 
 ```
 
-Requests & Responses
+Supported Methods
 
 ```
 Collection Methods
