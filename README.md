@@ -75,11 +75,11 @@ Response Models
 The Data Model is a defined in [MTN Sandbox](https://momodeveloper.mtn.com/docs/services/collection/operations/requesttopay-POST)
 ```
 "statusCode": 200, //Http Status code
-"data": {
-        //data from MTN API
+"data": {   //data from MTN API
+        
     },
-    "status": "SUCCESSFUL", //Successful or Failed
-    "reason": null //populated if there's a failure
+    "status": "SUCCESSFUL", 
+    "reason": null
 },
 "status": "Successful"
 
