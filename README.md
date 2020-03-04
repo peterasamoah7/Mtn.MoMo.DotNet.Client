@@ -31,6 +31,38 @@ services.AddMtnCollectionClient(config);
 Register all clients. Client configuration is required for each client.
 
 ```
+var cconfig = new CollectionConfig
+{
+    ApiKey = "e531c7f22df84e91844cbf849970566d",
+    SubscriptionKey = "4e0dda8bfe554146aae09d5ab8b112a8",
+    UserId = "9d5a2b6b-a164-443c-ac22-27404d86a2f4",
+    Environment = "sandbox",
+    Sandbox = true, //no need to provide base url if sandbox only set this to true, this will default to sandbox url
+    BaseUrl = "<your_production_url>"
+};
+
+//disbursement client config
+var dconfig = new DisbursementsConfig
+{
+    ApiKey = "0ef2baa628e04a419ee7d4bf17839c20",
+    SubscriptionKey = "f1d94c7aabd64fc0af6bfd0a2353c020",
+    UserId = "1bfc600a-a6e1-4c1b-ba66-5fee8038c056",
+    Environment = "sandbox",
+    Sandbox = true, //no need to provide base url if sandbox only set this to true, this will default to sandbox url
+    BaseUrl = "<your_production_url>"
+};
+
+//remittace client config
+var rconfig = new RemittanceConfig
+{
+    ApiKey = "a4b41504bff44def992f439fa97a6e41",
+    SubscriptionKey = "64fe810144b240298a83bc73ddf85d67",
+    UserId = "1bfc600a-a6e1-4c1b-ba66-5fee8038c056",
+    Environment = "sandbox",
+    Sandbox = true, //no need to provide base url if sandbox only set this to true, this will default to sandbox url
+    BaseUrl = "<your_product_url>"
+};
+
  services
     .AddMtnCollectionClient(cconfig);
     .AddMtnDisbursementsClient(dconfig)
