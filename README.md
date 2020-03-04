@@ -69,6 +69,7 @@ Remittance Methods
 
 ## Sample Usage
 See sample project included [Sample Project](https://github.com/peterasamoah7/Mtn.MoMo.DotNet.Client/tree/master/MtnMomo.Sample)
+
 See test project for all methods usage [Test Project](https://github.com/peterasamoah7/Mtn.MoMo.DotNet.Client/tree/master/MtnMomo.DotNet.Client.Tests)
 
 ## Contributing
