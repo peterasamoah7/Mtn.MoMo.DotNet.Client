@@ -13,6 +13,7 @@ Install-Package MtnMobileMoney.DotNet.Client -Version 1.0.0
 Set up client library using depency injection
 The client Mtn Mobile Money Collection, Disbusrements and Remittance APIs
 
+Register only Collection CLient
 ```
 var config = new CollectionConfig
 {
@@ -25,6 +26,15 @@ var config = new CollectionConfig
 };
 
 services.AddMtnCollectionClient(config);
+
+```
+Register all clients. Client configuration is required for each client.
+
+```
+ services
+    .AddMtnCollectionClient(cconfig);
+    .AddMtnDisbursementsClient(dconfig)
+    .AddMtnRemittanceClient(rconfig);
 
 ```
 
