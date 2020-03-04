@@ -66,9 +66,13 @@ Remittance Methods
 Request Models
 All methods use custom models with the same structure as specified in [MTN Sandbox](https://momodeveloper.mtn.com/docs/services/collection/operations/requesttopay-POST)
 
+
 Please see [Test Project](https://github.com/peterasamoah7/Mtn.MoMo.DotNet.Client/tree/master/MtnMomo.DotNet.Client.Tests) for specific models
 
+
 Response Models
+
+The Data Model is a defined in [MTN Sandbox](https://momodeveloper.mtn.com/docs/services/collection/operations/requesttopay-POST)
 ```
 "statusCode": 200, //Http Status code
 "data": {
